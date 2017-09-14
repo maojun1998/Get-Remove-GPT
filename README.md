@@ -1,0 +1,3 @@
+# Get-Remove-GPT
+Get or Remove the GPT
+.....................
